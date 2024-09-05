@@ -1,0 +1,230 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+html, body {
+    height: 100%;
+}
+
+body{
+    background-color: rgb(37, 47, 56);
+    display: flex;
+}
+
+#title{
+    position: absolute;
+    width:50%;
+    left:25%;
+    text-align: center;
+    top: 10px;
+    color: white;
+    font-size: clamp(1px, 4vw, 100px);
+    font-family: 'Cinzel Decorative', serif;
+}
+
+#knowledge, #upgrades, #stats, #shatter{
+    font-family: 'Papyrus', fantasy;
+    position:absolute;
+    background-color: rgba(240, 248, 255, 0.658);
+    border: 10px solid rgba(240, 248, 255);
+    border-radius: 25px;
+    width: 17%;
+    height: auto;
+    padding:1%;
+    font-size: clamp(1px, 2.2vw, 100px);
+}
+
+#knowledge h1, #upgrades h1, #stats h1{
+    font-size: clamp(1px, 3vw, 50px);
+    text-align: center;
+    background-color: rgba(240, 248, 255);
+    border-radius: 10px;
+    margin-bottom: 10px;
+    padding-bottom: 5px;
+}
+
+#knowledge{
+    left: 10px;
+    top: 10px;
+}
+
+#arcanaNum, #naturaNum, #demoniaNum, #etheriaNum{
+    float: right;
+    text-align: right;
+}
+
+#natura, #demonia, #etheria, #shatter #shardGain, #shardStat{
+    display:none;
+}
+
+#upgrades{
+    right: 10px;
+    top: 10px;
+    height: 73%;
+    display: flex;
+    flex-direction: column;
+}
+
+#upgrades #scroll{
+    overflow: auto;
+    background-color: #bbb;
+    border-radius: 25px;
+    width: 100%;
+    scrollbar-width: none;  /* For Firefox */
+    -ms-overflow-style: none;
+}
+
+#upgrades #scroll::-webkit-scrollbar {
+    display: none;
+}
+
+#upgrades button{
+    font-family: 'Papyrus', fantasy;
+    background-color: rgba(240, 248, 255, 0.658);
+    border: 10px solid rgba(240, 248, 255);
+    border-radius: 25px;
+    width: 100%;
+    padding:1%;
+    margin-bottom: 3%;
+    font-size: clamp(1px, 1.4vw, 30px);
+    max-height: auto;
+}
+
+#stats{
+    left: 10px;
+    bottom: 10px;
+    font-size: clamp(1px, 1.5vw, 100px);
+    text-align: center;
+}
+
+#reset{
+    font-family: 'Papyrus', fantasy;
+    position:absolute;
+    background-color: rgba(240, 248, 255, 0.658);
+    border: 10px solid rgba(240, 248, 255);
+    border-radius: 25px;
+    width: 10%;
+    height: auto;
+    padding:.5%;
+    font-size: 15px;
+    bottom: 10px;
+    left: 23%;
+}
+
+#shatter{
+    background-color: rgba(240, 248, 255, 0.658);
+    right: 10px;
+    bottom: 10px;
+    width: 20.5%;
+    font-size: clamp(1px, 1.3vw, 30px);
+    padding:.5%;
+    height:14%;
+}
+
+#orb{
+    aspect-ratio: 1/1;
+    height: 350px;
+    margin: auto;
+    border-radius: 50%;
+    background: transparent;
+    box-shadow: inset 0 25px 70px rgba(255,255,255,0.35);
+    box-sizing: border-box;
+    border: 10px solid rgba(255, 255, 255, 0.4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position:relative;
+
+}
+
+#glow{
+    aspect-ratio: 1/1;
+    height: 0%;
+    border-radius: 50%;
+    background: radial-gradient(rgb(36, 36, 255),rgba(8, 8, 106, 0.427));
+    filter: blur(5px);
+    box-shadow: 0 0 20px 5px rgba(0, 0, 61, 0.427);
+    transition: box-shadow 0.3s ease-in-out;
+}
+
+#shine{
+    aspect-ratio: 1/1;
+    height: 20%;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.2); 
+    position: absolute;
+    top: 10%;
+    right: 17%
+}
+
+#shine2{
+    aspect-ratio: 1/1;
+    height: 10%;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.2); 
+    position: absolute;
+    top: 28%;
+    right: 7%
+}
+
+#shadow{
+    height: 10%;
+    width: 100%;
+    border-radius: 50%;
+    background: black;
+    position: absolute;
+    bottom: -28%;
+   
+}
+
+#stand{
+    position: absolute;
+    bottom: -22%;
+    width: 100%;
+    height: 30%;
+    text-align: center;
+    color: white;
+    font-size: 30px;
+    display: flex;
+    flex-direction: column;
+}
+
+#stand #top{
+    background: transparent;
+    height: 0;
+    width: 185px;
+    border-top: 15px solid #cd7f32;
+    border-left: 15px solid transparent;
+    border-right: 15px solid transparent;
+    margin:auto;
+}
+
+#stand #middle{
+    background: transparent;
+    height: 0;
+    width: 185px;
+    border-bottom: 20px solid #f9a450;
+    border-left: 25px solid transparent;
+    border-right: 25px solid transparent;
+    margin:auto;
+}
+
+#stand #bottom{
+    background: transparent;
+    height: 0;
+    width: 185px;
+    border-top: 70px solid #cd7f32;
+    border-left: 25px solid transparent;
+    border-right: 25px solid transparent;
+    margin:auto;
+}
+
+particle {
+    border-radius: 50%;
+    left: 0;
+    pointer-events: none;
+    position: fixed;
+    top: 0;
+    opacity: 0
+}
