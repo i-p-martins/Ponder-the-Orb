@@ -8,14 +8,22 @@ $(document).ready(function(){
     let shards = Number(localStorage.getItem('shards'));
     if(shards >= 1){
         $("#shardStat").css("display", "block");
-        $("#shardStat").html(nFormatter(shards) + " Shards")
+        $("#shardStat").html(nFormatter(shards, 2) + " Shards")
     }
 
     let harder = Number(localStorage.getItem('harder'));
+    if (harder === null) {
+        harder = 1;
+        localStorage.setItem('harder', harder);
+    }
     $("#harderCost").html("-" + nFormatter(10*(Math.pow(harder, 2)),2) + " Arcana");
     $("#harderStat").html(nFormatter(harder, 2) + " Knowledge/Click");
 
     let faster = Number(localStorage.getItem('faster'));
+    if (faster === null){
+        faster = 1;
+        localStorage.setItem('faster', faster);
+    }
     $("#fasterCost").html("-" + nFormatter(50*(Math.pow(faster, 2))) + " Arcana");
     $("#fasterStat").html("x" + nFormatter(faster, 2) + " Magic Bonus");
 
@@ -24,25 +32,14 @@ $(document).ready(function(){
     $("#smarterStat").html(nFormatter(smarter,2) + " Knowledge/Second");
     
     let longer = Number(localStorage.getItem('longer'));
-    $("#longerCost").html("-" + nFormatter(100*(Math.pow(longer/10, 2)),2) + " Arcana");
-    $("#longerStat").html(nFormatter(longer,2) + " Max Knowledge");
-
-    $("#totalPonder").html("Magic on Ponder: " + nFormatter(faster*(longer/10)),2);
-
-    if (harder === null) {
-        harder = 1;
-        localStorage.setItem('harder', harder);
-    }
-
     if (longer === null){
         longer = 10;
         localStorage.setItem('longer', longer);
     }
+    $("#longerCost").html("-" + nFormatter(100*(Math.pow(longer/10, 2)),2) + " Arcana");
+    $("#longerStat").html(nFormatter(longer,2) + " Max Knowledge");
 
-    if (faster === null){
-        faster = 1;
-        localStorage.setItem('faster', faster);
-    }
+    $("#totalPonder").html("Magic on Ponder: " + nFormatter(faster*(longer/10)),2);
 
     (function(){
         knowledge += smarter/10;
