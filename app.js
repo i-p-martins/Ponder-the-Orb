@@ -107,6 +107,32 @@ $(document).ready(function(){
         localStorage.setItem('knowledge',knowledge);
     });
 
+    $('#orb').on('touchend', function() {
+        knowledge += harder;
+        
+        if (knowledge >= longer){
+            var buttonOffset = $(this).offset();
+        
+            // Get the button's width and height
+            var buttonWidth = $(this).outerWidth();
+            var buttonHeight = $(this).outerHeight();
+        
+            // Calculate the center of the button
+            var centerX = buttonOffset.left + buttonWidth / 2;
+            var centerY = buttonOffset.top + buttonHeight / 2;
+
+            pop(centerX, centerY);
+            knowledge = 0;
+            arcana += faster*(longer/10)*(shards+1);
+            $("#arcanaNum").html(nFormatter(arcana,1));
+            localStorage.setItem('arcana',arcana);
+        }
+
+        $("#glow").height((knowledge/longer)*100 + "%")
+        
+        localStorage.setItem('knowledge',knowledge);
+    });
+
     $("#ponderHarder").click(function(){
         if (arcana >= calculateTotalCost(10, harder-1, buyMulti)){
             arcana -= calculateTotalCost(10, harder-1, buyMulti);
