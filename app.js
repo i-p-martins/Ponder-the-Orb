@@ -82,7 +82,6 @@ $(document).ready(function(){
     })();
 
     $("#orb").click(function(){
-        alert("this works!");
         knowledge += harder;
         
         if (knowledge >= longer){
