@@ -10,14 +10,56 @@ html, body {
 body{
     background-color: rgb(37, 47, 56);
     display: flex;
+    touch-action: none;
+}
+
+#upgrades{grid-area: upgrades;}
+#stats{grid-area: stats;}
+#shatter{grid-area: shatter;}
+#knowledge{grid-area: knowledge;}
+#title{grid-area: title;}
+#orb{grid-area: orb;}
+#empty{grid-area: empty;}
+#empty2{grid-area: empty2;}
+#empty3{grid-area: empty3;}
+
+#upgrades, #stats, #shatter, #knowledge{
+    position:relative;
+    width: auto;
+    height: auto;
+    top: auto;
+    left: auto;
+    right: auto;
+    bottom: auto;
+    font-size: clamp(1px, 2vh, 30px);
+}
+
+#ui{
+    position: absolute;
+    display: grid;
+    bottom: 1%;
+    top:1%;
+    left: 1%;
+    right: 1%;
+    grid-template-columns: repeat(5, 1fr); /* 3 equal columns */
+    grid-template-rows: repeat(7, 1fr);    /* 3 equal rows */
+    grid-template-areas:
+        'knowledge title title title upgrades'
+        'empty2 empty empty empty upgrades' 
+        'empty2 empty empty empty upgrades'
+        'empty2 empty empty empty upgrades'
+        'empty2 empty empty empty empty3'
+        'stats empty empty empty empty3'
+        'stats empty empty empty shatter';
+    column-gap: 5px;
+    row-gap:5px;
+    padding: 5px;
+
+    
 }
 
 #title{
-    position: absolute;
-    width:50%;
-    left:25%;
     text-align: center;
-    top: 10px;
     color: white;
     font-size: clamp(1px, 4vw, 100px);
     font-family: 'Cinzel Decorative', serif;
@@ -25,28 +67,17 @@ body{
 
 #knowledge, #upgrades, #stats, #shatter{
     font-family: 'Papyrus', fantasy;
-    position:absolute;
     background-color: rgba(240, 248, 255, 0.658);
     border: 10px solid rgba(240, 248, 255);
     border-radius: 25px;
-    width: 17%;
-    height: auto;
     padding:1%;
     font-size: clamp(1px, 2.2vw, 100px);
 }
 
-#knowledge h1, #upgrades h1, #stats h1{
-    font-size: clamp(1px, 3vw, 50px);
-    text-align: center;
-    background-color: rgba(240, 248, 255);
-    border-radius: 10px;
-    margin-bottom: 10px;
-    padding-bottom: 5px;
-}
-
 #knowledge{
-    left: 10px;
-    top: 10px;
+    height: fit-content;
+    padding-left: 5%;
+    padding-right: 5%;
 }
 
 #arcanaNum, #naturaNum, #demoniaNum, #etheriaNum{
@@ -55,24 +86,20 @@ body{
 }
 
 #natura, #demonia, #etheria, #shatter #shardGain, #shardStat{
-    display:none;
+    display: none;
 }
 
 #upgrades{
-    right: 10px;
-    top: 10px;
-    height: 73%;
     display: flex;
     flex-direction: column;
 }
-
 #upgrades #scroll{
-    overflow: auto;
-    background-color: #bbb;
     border-radius: 25px;
-    width: 100%;
+    overflow: auto;
     scrollbar-width: none;  /* For Firefox */
     -ms-overflow-style: none;
+    display: flex;
+    flex-direction: column;
 }
 
 #upgrades #scroll::-webkit-scrollbar {
@@ -91,10 +118,17 @@ body{
     max-height: auto;
 }
 
+#buyButtons{
+    display: flex;
+    gap: 2%;
+} 
+
 #stats{
-    left: 10px;
-    bottom: 10px;
-    font-size: clamp(1px, 1.5vw, 100px);
+    padding: 10px;
+    overflow: auto;
+    scrollbar-width: none;  /* For Firefox */
+    -ms-overflow-style: none;
+    font-size: clamp(1px, 1.6vw, 100px);
     text-align: center;
 }
 
@@ -109,33 +143,31 @@ body{
     padding:.5%;
     font-size: 15px;
     bottom: 10px;
-    left: 23%;
+    left: 45%;
 }
 
 #shatter{
     background-color: rgba(240, 248, 255, 0.658);
-    right: 10px;
-    bottom: 10px;
-    width: 20.5%;
-    font-size: clamp(1px, 1.3vw, 30px);
+    font-size: clamp(1px, 2.2vw, 30px);
     padding:.5%;
-    height:14%;
 }
 
 #orb{
+    font-size: 1vh;
     aspect-ratio: 1/1;
-    height: 350px;
+    height: 48%;
     margin: auto;
     border-radius: 50%;
     background: transparent;
     box-shadow: inset 0 25px 70px rgba(255,255,255,0.35);
     box-sizing: border-box;
-    border: 10px solid rgba(255, 255, 255, 0.4);
+    border: 1em solid rgba(255, 255, 255, 0.4);
     display: flex;
-    align-items: center;
-    justify-content: center;
-    position:relative;
-    touch-action: none;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    -webkit-tap-highlight-color: transparent;
 }
 
 #glow{
@@ -146,6 +178,10 @@ body{
     filter: blur(5px);
     box-shadow: 0 0 20px 5px rgba(0, 0, 61, 0.427);
     transition: box-shadow 0.3s ease-in-out;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
 
 #shine{
@@ -184,40 +220,33 @@ body{
     width: 100%;
     height: 30%;
     text-align: center;
-    color: white;
-    font-size: 30px;
     display: flex;
     flex-direction: column;
+    gap: 0;
 }
 
 #stand #top{
-    background: transparent;
-    height: 0;
-    width: 185px;
-    border-top: 15px solid #cd7f32;
-    border-left: 15px solid transparent;
-    border-right: 15px solid transparent;
-    margin:auto;
+    width: 62%;
+    height: 20%;
+    background-color: #c5711e;
+    clip-path: polygon(0% 0%, 100% 0%, 90% 100%, 10% 100%);
+    margin: auto;
 }
 
 #stand #middle{
-    background: transparent;
-    height: 0;
-    width: 185px;
-    border-bottom: 20px solid #f9a450;
-    border-left: 25px solid transparent;
-    border-right: 25px solid transparent;
-    margin:auto;
+    width: 62%;;
+    height: 20%;
+    background-color: #ffb366;
+    clip-path: polygon(10% 0%, 90% 0%, 100% 100%, 0% 100%);
+    margin: auto;
 }
 
 #stand #bottom{
-    background: transparent;
-    height: 0;
-    width: 185px;
-    border-top: 70px solid #cd7f32;
-    border-left: 25px solid transparent;
-    border-right: 25px solid transparent;
-    margin:auto;
+    width: 62%;;
+    height: 60%;
+    background-color: #c5711e;
+    clip-path: polygon(0% 0%, 100% 0%, 90% 100%, 10% 100%);
+    margin: auto;
 }
 
 particle {
@@ -227,4 +256,81 @@ particle {
     position: fixed;
     top: 0;
     opacity: 0
+}
+
+@media only screen and (max-aspect-ratio: 9/10){
+    #title{
+        font-size: clamp(1px, 4vh, 100px);
+    }
+
+    #upgrades, #stats, #shatter, #knowledge{
+        position:relative;
+        width: auto;
+        height: auto;
+        top: auto;
+        left: auto;
+        right: auto;
+        bottom: auto;
+        font-size: clamp(1px, 2vh, 30px);
+    }
+
+    #knowledge{
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        padding: 10%;
+    }
+    
+    #stats{
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        padding: 1%;
+        font-size: clamp(1px, 1.8vh, 30px);
+    }
+
+    #upgrades button{
+        font-size: clamp(1px, 2ch, 30px);
+    }
+
+    #ui{
+        position: absolute;
+        display: grid;
+        bottom: 1%;
+        top:1%;
+        left: 1%;
+        right: 1%;
+        grid-template-columns: repeat(5, 1fr); /* 3 equal columns */
+        grid-template-rows: repeat(12, 1fr);    /* 3 equal rows */
+        grid-template-areas:
+            'title title title title title'
+            'empty2 empty3 empty empty empty'
+            'empty2 empty3 empty empty empty'
+            'empty2 empty3 empty empty empty'
+            'empty2 empty3 empty empty empty'
+            'empty2 empty3 empty empty empty'
+            'knowledge knowledge upgrades upgrades upgrades' 
+            'knowledge knowledge upgrades upgrades upgrades'
+            'stats stats upgrades upgrades upgrades'
+            'stats stats upgrades upgrades upgrades'
+            'stats stats upgrades upgrades upgrades'
+            'shatter shatter upgrades upgrades upgrades';
+        column-gap: 5px;
+        row-gap:5px;
+        padding: 5px;
+    }
+
+    #orb{
+        top: 25%;
+        height: 32%;
+    }
+
+    #reset{
+        top: 44.5%;
+        bottom: auto;
+        left: 5px;
+        width: fit-content;
+        padding-left: 3%;
+        padding-right: 3%;
+    }
 }
