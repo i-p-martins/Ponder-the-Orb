@@ -10,6 +10,36 @@
     <link rel="stylesheet" href="main.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script src="app.js"></script>
+    <script>
+        $(document).ready(function(){
+            $("#orb").click(function(){
+                alert("this works!");
+                knowledge += harder;
+                
+                if (knowledge >= longer){
+                    var buttonOffset = $(this).offset();
+                
+                    // Get the button's width and height
+                    var buttonWidth = $(this).outerWidth();
+                    var buttonHeight = $(this).outerHeight();
+                
+                    // Calculate the center of the button
+                    var centerX = buttonOffset.left + buttonWidth / 2;
+                    var centerY = buttonOffset.top + buttonHeight / 2;
+        
+                    pop(centerX, centerY);
+                    knowledge = 0;
+                    arcana += faster*(longer/10)*(shards+1);
+                    $("#arcanaNum").html(nFormatter(arcana,1));
+                    localStorage.setItem('arcana',arcana);
+                }
+        
+                $("#glow").height((knowledge/longer)*100 + "%")
+                
+                localStorage.setItem('knowledge',knowledge);
+            });
+        });
+    </script>
 </head>
 
 <body>
