@@ -176,6 +176,7 @@ $(document).ready(function(){
     });
 
     $("#reset").click(function(){
+        shards = 0;
         reset();
         localStorage.setItem('shards', 0);
         $("#shardStat").html(nFormatter(shards, 1) + " Shards")
