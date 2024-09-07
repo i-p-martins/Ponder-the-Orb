@@ -10,7 +10,7 @@ html, body {
 body{
     background-color: rgb(37, 47, 56);
     display: flex;
-    touch-action: none;
+    touch-action: auto;
 }
 
 #upgrades{grid-area: upgrades;}
@@ -22,11 +22,6 @@ body{
 #empty{grid-area: empty;}
 #empty2{grid-area: empty2;}
 #empty3{grid-area: empty3;}
-
-#test{
-    width:20%;
-    z-index: 9999;
-}
 
 #upgrades, #stats, #shatter, #knowledge{
     position:relative;
