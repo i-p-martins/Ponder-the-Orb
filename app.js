@@ -107,7 +107,7 @@ $(document).ready(function(){
         localStorage.setItem('knowledge',knowledge);
     });
 
-    $('#orb').on('touchend', function() {
+    $('#orb').on('touchstart', function() {
         knowledge += harder;
         
         if (knowledge >= longer){
