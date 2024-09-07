@@ -1,12 +1,3 @@
-let knowledge = Number(localStorage.getItem('knowledge'));
-let arcana = Number(localStorage.getItem('arcana'));
-let shards = Number(localStorage.getItem('shards'));
-let buyMulti = 1;
-let harder = Number(localStorage.getItem('harder'));
-let smarter = Number(localStorage.getItem('smarter'));
-let faster = Number(localStorage.getItem('faster'));
-let longer = Number(localStorage.getItem('longer'));
-
 $(document).ready(function(){
     let knowledge = Number(localStorage.getItem('knowledge'));
     $("#glow").height(knowledge*10 + "%")
@@ -51,6 +42,70 @@ $(document).ready(function(){
     $("#longerStat").html(nFormatter(longer,1) + " Max Knowledge");
 
     $("#totalPonder").html("Magic on Ponder: " + nFormatter(faster*(longer/10)),1);
+
+    (function(){
+
+        knowledge += smarter/10;
+        if (knowledge >= longer){
+            var buttonOffset = $("#orb").offset();
+        
+            // Get the button's width and height
+            var buttonWidth = $("#orb").outerWidth();
+            var buttonHeight = $("#orb").outerHeight();
+        
+            // Calculate the center of the button
+            var centerX = buttonOffset.left + buttonWidth / 2;
+            var centerY = buttonOffset.top + buttonHeight / 2;
+
+            pop(centerX, centerY);
+            knowledge = 0;
+            arcana += faster*(longer/10)*(shards+1);
+            $("#arcanaNum").html(nFormatter(arcana,1));
+            localStorage.setItem('arcana',arcana);
+        }
+
+        if (arcana >= 10000){
+            $("#shatterText").html("Shatter the Orb");
+            $("#shardGain").css("display", "block");
+            $("#shardGain").html("+" + nFormatter(arcana/10000,1) + " Shards")
+        }
+        else{
+            $("#shatterText").html("10K Arcana");
+            $("#shardGain").css("display", "none");
+        }
+
+        $("#glow").height((knowledge/longer)*100 + "%")
+        
+        localStorage.setItem('knowledge',knowledge);
+
+        setTimeout(arguments.callee, 100);
+    })();
+
+    $("#orb").click(function(){
+        knowledge += harder;
+        
+        if (knowledge >= longer){
+            var buttonOffset = $(this).offset();
+        
+            // Get the button's width and height
+            var buttonWidth = $(this).outerWidth();
+            var buttonHeight = $(this).outerHeight();
+        
+            // Calculate the center of the button
+            var centerX = buttonOffset.left + buttonWidth / 2;
+            var centerY = buttonOffset.top + buttonHeight / 2;
+
+            pop(centerX, centerY);
+            knowledge = 0;
+            arcana += faster*(longer/10)*(shards+1);
+            $("#arcanaNum").html(nFormatter(arcana,1));
+            localStorage.setItem('arcana',arcana);
+        }
+
+        $("#glow").height((knowledge/longer)*100 + "%")
+        
+        localStorage.setItem('knowledge',knowledge);
+    });
 
     $("#ponderHarder").click(function(){
         if (arcana >= calculateTotalCost(10, harder-1, buyMulti)){
@@ -192,71 +247,6 @@ $(document).ready(function(){
         $("#totalPonder").html("Magic on Ponder: " + nFormatter(faster*(longer/10)*(shards+1)), 1);
     };
 });
-
-function orb(){
-    knowledge += harder;
-    
-    if (knowledge >= longer){
-        var buttonOffset = $("#orb").offset();
-    
-        // Get the button's width and height
-        var buttonWidth = $("#orb").outerWidth();
-        var buttonHeight = $("#orb").outerHeight();
-    
-        // Calculate the center of the button
-        var centerX = buttonOffset.left + buttonWidth / 2;
-        var centerY = buttonOffset.top + buttonHeight / 2;
-
-        pop(centerX, centerY);
-        knowledge = 0;
-        arcana += faster*(longer/10)*(shards+1);
-        $("#arcanaNum").html(nFormatter(arcana,1));
-        localStorage.setItem('arcana',arcana);
-    }
-
-    $("#glow").height((knowledge/longer)*100 + "%")
-    
-    localStorage.setItem('knowledge',knowledge);
-}
-
-(function(){
-
-    knowledge += smarter/10;
-    if (knowledge >= longer){
-        var buttonOffset = $("#orb").offset();
-    
-        // Get the button's width and height
-        var buttonWidth = $("#orb").outerWidth();
-        var buttonHeight = $("#orb").outerHeight();
-    
-        // Calculate the center of the button
-        var centerX = buttonOffset.left + buttonWidth / 2;
-        var centerY = buttonOffset.top + buttonHeight / 2;
-
-        pop(centerX, centerY);
-        knowledge = 0;
-        arcana += faster*(longer/10)*(shards+1);
-        $("#arcanaNum").html(nFormatter(arcana,1));
-        localStorage.setItem('arcana',arcana);
-    }
-
-    if (arcana >= 10000){
-        $("#shatterText").html("Shatter the Orb");
-        $("#shardGain").css("display", "block");
-        $("#shardGain").html("+" + nFormatter(arcana/10000,1) + " Shards")
-    }
-    else{
-        $("#shatterText").html("10K Arcana");
-        $("#shardGain").css("display", "none");
-    }
-
-    $("#glow").height((knowledge/longer)*100 + "%")
-    
-    localStorage.setItem('knowledge',knowledge);
-
-    setTimeout(arguments.callee, 100);
-})();
-
 
 function calculateTotalCost(base, startUpgrade, numberOfUpgrades) {
     let totalCost = 0;
