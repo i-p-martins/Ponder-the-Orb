@@ -23,6 +23,11 @@ body{
 #empty2{grid-area: empty2;}
 #empty3{grid-area: empty3;}
 
+#test{
+    width:20%;
+    z-index: 9999;
+}
+
 #upgrades, #stats, #shatter, #knowledge{
     position:relative;
     width: auto;
