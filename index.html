@@ -13,7 +13,6 @@
 </head>
 
 <body>
-    <button type="button" id='test' onclick="alert('Hello world!')">Click Me!</button>
     <div id="ui">
         <h1 id="title">PONDER THE ORB</h1>
 
@@ -24,7 +23,7 @@
             <p id="etheria" style="color: rgb(255, 213, 0);">Etheria: <span id="etheriaNum">0</span></p>
         </div>
 
-        <button id="orb">
+        <button type="button" id="orb">
             <div id="glow"></div>
             <div id="shine"></div>
             <div id="shine2"></div>
@@ -40,24 +39,24 @@
 
         <div id="upgrades">
             <div id="buyButtons">
-                <button id="one" disabled>x1</button>
-                <button id="ten">x10</button>
-                <button id="hundred">x100</button>
+                <button type="button" id="one" disabled>x1</button>
+                <button type="button" id="ten">x10</button>
+                <button type="button" id="hundred">x100</button>
             </div>
             <div id="scroll">
-                <button id="ponderHarder">Ponder Harder<br>
+                <button type="button" id="ponderHarder">Ponder Harder<br>
                     <span id="harderNum">+1 Knowledge/Click<br></span>
                     <span id="harderCost" style="color: blue">-10 Arcana</span>
                 </button>
-                <button id="ponderSmarter">Ponder Smarter<br>
+                <button type="button" id="ponderSmarter">Ponder Smarter<br>
                     <span id="smarterNum">+1 Knowledge/Sec<br></span>
                     <span id="smarterCost" style="color: blue">-100 Arcana</span>
                 </button>
-                <button id="ponderFaster">Ponder Faster<br>
+                <button type="button" id="ponderFaster">Ponder Faster<br>
                     <span id="fasterNum">+1 Magic Bonus<br></span>
                     <span id="fasterCost" style="color: blue">-50 Arcana</span>
                 </button>
-                <button id="ponderLonger">Ponder Longer<br>
+                <button type="button" id="ponderLonger">Ponder Longer<br>
                     <span id="longerNum">+10 Max Knowledge<br></span>
                     <span id="longerCost" style="color: blue">-100 Arcana</span>
                 </button>
